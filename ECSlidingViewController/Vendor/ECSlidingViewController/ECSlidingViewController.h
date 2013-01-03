@@ -14,24 +14,32 @@ extern NSString *const ECSlidingViewUnderRightWillAppear;
 
 /** Notification that gets posted when the underLeft view will appear */
 extern NSString *const ECSlidingViewUnderLeftWillAppear;
+extern NSString *const ECSlidingViewUnderTopWillAppear;
+extern NSString *const ECSlidingViewUnderBottomWillAppear;
 
 /** Notification that gets posted when the underLeft view will disappear */
 extern NSString *const ECSlidingViewUnderLeftWillDisappear;
 
 /** Notification that gets posted when the underRight view will disappear */
 extern NSString *const ECSlidingViewUnderRightWillDisappear;
+extern NSString *const ECSlidingViewUnderTopWillDisappear;
+extern NSString *const ECSlidingViewUnderBottomWillDisappear;
 
 /** Notification that gets posted when the top view is anchored to the left side of the screen */
 extern NSString *const ECSlidingViewTopDidAnchorLeft;
 
 /** Notification that gets posted when the top view is anchored to the right side of the screen */
 extern NSString *const ECSlidingViewTopDidAnchorRight;
+extern NSString *const ECSlidingViewTopDidAnchorTop;
+extern NSString *const ECSlidingViewTopDidAnchorBottom;
+
 
 /** Notification that gets posted when the top view will be centered on the screen */
 extern NSString *const ECSlidingViewTopWillReset;
 
 /** Notification that gets posted when the top view is centered on the screen */
 extern NSString *const ECSlidingViewTopDidReset;
+
 
 /** @constant ECViewWidthLayout width of under views */
 typedef enum {
@@ -43,12 +51,24 @@ typedef enum {
   ECVariableRevealWidth
 } ECViewWidthLayout;
 
+/** @constant ECViewWidthLayout height of under views */
+typedef enum {
+    /** Under view will take up the full height of the screen */
+    ECFullHeight,
+    /** Under view will have a fixed height equal to anchorRightRevealAmount or anchorLeftRevealAmount. */
+    ECFixedRevealHeight,
+    /** Under view will have a variable height depending on rotation equal to the screen's height - anchorRightPeekAmount or anchorLeftPeekAmount. */
+    ECVariableRevealHeight
+} ECViewHeightLayout;
+
 /** @constant ECSide side of screen */
 typedef enum {
   /** Left side of screen */
   ECLeft,
   /** Right side of screen */
-  ECRight
+  ECRight,
+  ECTop,
+  ECBottom
 } ECSide;
 
 /** @constant ECResetStrategy top view behavior while anchored. */
@@ -78,6 +98,8 @@ typedef enum {
  This view controller is typically a supplemental view to the top view.
  */
 @property (nonatomic, strong) UIViewController *underRightViewController;
+@property (nonatomic, strong) UIViewController *underTopViewController;
+@property (nonatomic, strong) UIViewController *underBottomViewController;
 
 /** Returns the top view controller.
  
@@ -100,6 +122,8 @@ typedef enum {
  @see anchorRightRevealAmount
  */
 @property (nonatomic, unsafe_unretained) CGFloat anchorRightPeekAmount;
+@property (nonatomic, unsafe_unretained) CGFloat anchorTopPeekAmount;
+@property (nonatomic, unsafe_unretained) CGFloat anchorBottomPeekAmount;
 
 /** Returns the number of points the under right view is visible when the top view is anchored to the left side.
  
@@ -116,6 +140,8 @@ typedef enum {
  @see anchorRightPeekAmount
  */
 @property (nonatomic, unsafe_unretained) CGFloat anchorRightRevealAmount;
+@property (nonatomic, unsafe_unretained) CGFloat anchorTopRevealAmount;
+@property (nonatomic, unsafe_unretained) CGFloat anchorBottomRevealAmount;
 
 /** Specifies if the user should be able to interact with the top view when it is anchored.
  
@@ -142,6 +168,8 @@ typedef enum {
  By default, this is set to ECFullWidth
  */
 @property (nonatomic, unsafe_unretained) ECViewWidthLayout underRightWidthLayout;
+@property (nonatomic, unsafe_unretained) ECViewHeightLayout underTopHeightLayout;
+@property (nonatomic, unsafe_unretained) ECViewHeightLayout underBottomHeightLayout;
 
 /** Returns the strategy for resetting the top view when it is anchored.
  
@@ -184,20 +212,24 @@ typedef enum {
 /** Slides the top view off of the screen in the direction of the specified side.
  
  @param side The side for the top view to slide off the screen towards.
- @param animations Perform changes to properties that will be animated while top view is moved off screen. Can be nil.
+ @param animations Perform changes to p roperties that will be animated while top view is moved off screen. Can be nil.
  @param onComplete Executed after the animation is completed. Can be nil.
  */
 - (void)anchorTopViewOffScreenTo:(ECSide)side animations:(void(^)())animations onComplete:(void(^)())complete;
 
 /** Slides the top view back to the center. */
-- (void)resetTopView;
+- (void)resetTopView;   //todo: make it resetTopViewHorizontal
+
+/** Slides the top view back to the center. */
+- (void)resetTopViewVertical;
 
 /** Slides the top view back to the center.
 
  @param animations Perform changes to properties that will be animated while top view is moved back to the center of the screen. Can be nil.
  @param onComplete Executed after the animation is completed. Can be nil.
  */
-- (void)resetTopViewWithAnimations:(void(^)())animations onComplete:(void(^)())complete;
+- (void)resetTopViewWithAnimations:(void(^)())animations onComplete:(void(^)())complete;    //todo: make it resetTopViewWithAnimationsHorizontal
+- (void)resetTopViewWithAnimationsVertical:(void(^)())animations onComplete:(void(^)())complete;
 
 /** Returns true if the underLeft view is showing (even partially) */
 - (BOOL)underLeftShowing;

@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "NorthernViewController.h"
+#import "SouthernViewController.h"
 #import "UnderRightViewController.h"
 
 @interface FirstTopViewController : UIViewController

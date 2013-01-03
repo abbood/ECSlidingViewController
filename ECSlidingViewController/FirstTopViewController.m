@@ -20,12 +20,12 @@
   self.view.layer.shadowRadius = 10.0f;
   self.view.layer.shadowColor = [UIColor blackColor].CGColor;
   
-  if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-    self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+  if (![self.slidingViewController.underTopViewController isKindOfClass:[NorthernViewController class]]) {
+    self.slidingViewController.underTopViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Northern"];
   }
   
-  if (![self.slidingViewController.underRightViewController isKindOfClass:[UnderRightViewController class]]) {
-    self.slidingViewController.underRightViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UnderRight"];
+  if (![self.slidingViewController.underBottomViewController isKindOfClass:[SouthernViewController class]]) {
+    self.slidingViewController.underBottomViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Southern"];
   }
   
   [self.view addGestureRecognizer:self.slidingViewController.panGesture];
@@ -33,7 +33,7 @@
 
 - (IBAction)revealMenu:(id)sender
 {
-  [self.slidingViewController anchorTopViewTo:ECRight];
+  [self.slidingViewController anchorTopViewTo:ECBottom];
 }
 
 - (IBAction)revealUnderRight:(id)sender

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26D2197E16942611006F3535 /* NorthernViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2197D16942611006F3535 /* NorthernViewController.m */; };
+		26D2198116942742006F3535 /* SouthernViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2198016942742006F3535 /* SouthernViewController.m */; };
 		27407EEC14D8787E0035FD7F /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27407EEB14D8787E0035FD7F /* iPad.storyboard */; };
 		27498DCE14E96C75005C043E /* NavigationTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27498DCD14E96C75005C043E /* NavigationTopViewController.m */; };
 		27498DD514E96EEF005C043E /* SampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27498DD414E96EEF005C043E /* SampleTableViewController.m */; };
@@ -29,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26D2197C16942611006F3535 /* NorthernViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorthernViewController.h; sourceTree = "<group>"; };
+		26D2197D16942611006F3535 /* NorthernViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorthernViewController.m; sourceTree = "<group>"; };
+		26D2197F16942742006F3535 /* SouthernViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernViewController.h; sourceTree = "<group>"; };
+		26D2198016942742006F3535 /* SouthernViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernViewController.m; sourceTree = "<group>"; };
 		27407EEB14D8787E0035FD7F /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		27498DCC14E96C75005C043E /* NavigationTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTopViewController.h; sourceTree = "<group>"; };
 		27498DCD14E96C75005C043E /* NavigationTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTopViewController.m; sourceTree = "<group>"; };
@@ -159,6 +165,10 @@
 				2750E79C14CDBA48007727A0 /* ThirdTopViewController.m */,
 				2750E79E14CDBC32007727A0 /* UnderRightViewController.h */,
 				2750E79F14CDBC32007727A0 /* UnderRightViewController.m */,
+				26D2197C16942611006F3535 /* NorthernViewController.h */,
+				26D2197D16942611006F3535 /* NorthernViewController.m */,
+				26D2197F16942742006F3535 /* SouthernViewController.h */,
+				26D2198016942742006F3535 /* SouthernViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +260,8 @@
 				27FC94E014D0C14E0000B18C /* InitialSlidingViewController.m in Sources */,
 				27498DCE14E96C75005C043E /* NavigationTopViewController.m in Sources */,
 				27498DD514E96EEF005C043E /* SampleTableViewController.m in Sources */,
+				26D2197E16942611006F3535 /* NorthernViewController.m in Sources */,
+				26D2198116942742006F3535 /* SouthernViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
