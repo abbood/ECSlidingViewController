@@ -444,12 +444,10 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
             CGFloat panAmount = self.initialTouchPositionY - currentTouchPositionY;
             CGFloat newCenterPosition = self.initialVerticalCenter - panAmount;
             
-                    NSLog(@"newCenterPosition : %f, self.resettedCenterVertical: %f, ",newCenterPosition,self.resettedCenterVertical);
-            
             if ((newCenterPosition < self.resettedCenterVertical && self.anchorTopTopViewCenter == NSNotFound) || (newCenterPosition > self.resettedCenterVertical && self.anchorBottomTopViewCenter == NSNotFound)) {
                 newCenterPosition = self.resettedCenterVertical;
             }
-              NSLog(@"\n\nupdateTopViewVerticalCenterWithRecognizer calling topViewVerticalCenterWillChange with %f",newCenterPosition);
+
             [self topViewVerticalCenterWillChange:newCenterPosition];
             [self updateTopViewVerticalCenter:newCenterPosition];
             [self topViewVerticalCenterDidChange:newCenterPosition];
@@ -457,8 +455,6 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
     } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
         CGPoint currentVelocityPoint = [recognizer velocityInView:self.view];
         CGFloat currentVelocityY    = currentVelocityPoint.y;
-        
-              NSLog(@"underTopShowing %d,underBottomShowing %d  currentVelocityY %f",[self underTopShowing], [self underBottomShowing], currentVelocityY);
         
         if ([self underTopShowing] && currentVelocityY > 100) {
             [self anchorTopViewTo:ECBottom];
@@ -501,7 +497,6 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   if (side == ECLeft || side == ECRight)    //todo: abstract this part
       [self topViewHorizontalCenterWillChange:newCenter];
   else if (side == ECTop || side == ECBottom) {
-    NSLog(@"\n\nanchorTopViewTo calling topViewVerticalCenterWillChange with %f",newCenter);   
       [self topViewVerticalCenterWillChange:newCenter];
   }
   
@@ -558,10 +553,9 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   
   if (side == ECLeft || side == ECRight)   
       [self topViewHorizontalCenterWillChange:newCenter];
-  else if (side == ECTop || side == ECBottom) {
-        NSLog(@"\n\anchorTopViewOffScreenTo calling topViewVerticalCenterWillChange with %f",newCenter);
+  else if (side == ECTop || side == ECBottom) 
        [self topViewVerticalCenterWillChange:newCenter];
-  }
+  
       
   
   [UIView animateWithDuration:0.25f animations:^{
@@ -621,7 +615,6 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 
 - (void)resetTopViewWithAnimationsVertical:(void(^)())animations onComplete:(void(^)())complete
 {
-        NSLog(@"\n\nresetTopViewWithAnimationsVertical calling topViewVerticalCenterWillChange with %f",self.resettedCenterVertical);   
     [self topViewVerticalCenterWillChange:self.resettedCenterVertical];
     
     [UIView animateWithDuration:0.25f animations:^{
@@ -713,7 +706,6 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 	}
 	
   if (center.x <= self.resettedCenter && newHorizontalCenter > self.resettedCenter) {
-      NSLog(@"center.x %f self.resettedcenter %f newHorizontalcenter %f",center.x,self.resettedCenter, newHorizontalCenter);
     [self underLeftWillAppear];
   } else if (center.x >= self.resettedCenter && newHorizontalCenter < self.resettedCenter) {
     [self underRightWillAppear];
@@ -735,15 +727,10 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 			[[NSNotificationCenter defaultCenter] postNotificationName:ECSlidingViewUnderBottomWillDisappear object:self userInfo:nil];
 		});
 	}
-	NSLog(@"\n\n\n\n====topViewVerticalCenterWillChange:: center.y %f, self.resettedCenterVertical %f, newVerticalCenter %f",center.y,  self.resettedCenterVertical, newVerticalCenter);
     if (center.y <= self.resettedCenterVertical && newVerticalCenter > self.resettedCenterVertical) {    // moving in bottom direction   
-        NSLog(@"---------->underTopWillAppear");
         [self underTopWillAppear];
     } else if (center.y >= self.resettedCenterVertical && newVerticalCenter < self.resettedCenterVertical) {    // moving in upper direction
         [self underBottomWillAppear];
-                NSLog(@"---------->underBottomWillAppear");
-    }  else {
-                NSLog(@"---------->NONE WILL APPEAR");
     }
 }
 
